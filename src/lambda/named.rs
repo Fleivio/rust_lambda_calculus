@@ -17,3 +17,24 @@ impl fmt::Display for Expr {
     }
   }
 }
+
+#[macro_export]
+macro_rules! var {
+    ($x:ident) => {
+       Var(stringify!($x).to_string()) 
+    };
+}
+
+#[macro_export]
+macro_rules! abs {
+    ($head:ident, $body:expr) => {
+       Abs(stringify!($head).to_string(), Box::new($body)) 
+    };
+}
+
+#[macro_export]
+macro_rules! app {
+    ($e1:expr, $e2:expr) => {
+       App(Box::new($e1), Box::new($e2)) 
+    };
+}
